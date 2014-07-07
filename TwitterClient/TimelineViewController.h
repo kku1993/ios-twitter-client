@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimelineViewController : UIViewController
+#import "TimelineCell.h"
 
-@property (nonatomic) NSDictionary *timelineData;
+@interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic) NSArray *timelineData;
 
 - (id)initWithData:(id)data;
 

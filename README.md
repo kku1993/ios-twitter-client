@@ -24,3 +24,6 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - [AFNetworking](http://afnetworking.com/)
 - [BDBOAuth1Manager](https://github.com/bdbergeron/BDBOAuth1Manager)
 - [MMProgressHUD](https://github.com/mutualmobile/MMProgressHUD)
+
+# Icons
+- [Icons8](http://icons8.com)
