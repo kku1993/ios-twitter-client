@@ -13,6 +13,7 @@
 #import "TimelineCell.h"
 #import "TwitterAPI.h"
 #import "TweetViewController.h"
+#import "TweetEditorViewController.h"
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

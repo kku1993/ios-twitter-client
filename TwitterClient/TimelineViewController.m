@@ -74,7 +74,8 @@
 }
 
 - (void)onNewTweetButton {
-    
+    TweetEditorViewController *tevc = [[TweetEditorViewController alloc] initWithMode:1];
+    [self.navigationController pushViewController:tevc animated:true];
 }
 
 // pull down to refresh functions

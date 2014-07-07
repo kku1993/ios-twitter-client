@@ -60,4 +60,13 @@
     return [self GET:path parameters:nil success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)getUserDetailWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    return [self GET:@"1.1/account/verify_credentials.json" parameters:nil success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)postNewTweet:(NSString *)tweet success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSDictionary *params = @{@"status": tweet};
+    return [self POST:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
+}
+
 @end
