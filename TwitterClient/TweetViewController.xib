@@ -99,7 +99,6 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="onReplyButton:" destination="-1" eventType="touchUpInside" id="CBG-g8-2Ds"/>
                                 <action selector="onRetweetButton:" destination="-1" eventType="touchUpInside" id="tld-QS-SGp"/>
                             </connections>
                         </button>
