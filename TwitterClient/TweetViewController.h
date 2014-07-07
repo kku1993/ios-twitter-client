@@ -11,6 +11,7 @@
 
 #import "TimeFormatter.h"
 #import "TwitterAPI.h"
+#import "TweetEditorViewController.h"
 
 @interface TweetViewController : UIViewController
 

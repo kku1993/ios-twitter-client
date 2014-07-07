@@ -42,6 +42,9 @@
     
     // get timeline data
     [self loadTimeline];
+    
+    // register handler for reply button from tabelviewcell
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReplyButton:) name:@"replyButtonNotification" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -171,6 +174,14 @@
     [tvc setTitle:@"Tweet"];
     
     [self.navigationController pushViewController:tvc animated:true];
+}
+
+- (void)onReplyButton:(NSNotification *)notification {
+    NSDictionary *tweet = notification.userInfo;
+    
+    TweetEditorViewController *tevc = [[TweetEditorViewController alloc] initWithMode:2];
+    tevc.replyTweet = tweet;
+    [self.navigationController pushViewController:tevc animated:true];
 }
 
 

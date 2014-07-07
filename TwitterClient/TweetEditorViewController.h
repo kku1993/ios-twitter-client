@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
 
 @property (nonatomic) NSDictionary *userInfo;
+@property (nonatomic) NSDictionary *replyTweet; // the tweet being replied to
 @property (nonatomic) int mode;
 
 - (id)initWithMode:(int)mode;

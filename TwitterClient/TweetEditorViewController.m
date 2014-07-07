@@ -72,7 +72,10 @@
     }
     else {
         // reply - extract tags from the post
-        self.tweetTextView.text = [[NSString alloc] initWithFormat:@"@%@", self.userInfo[@"screen_name"]];
+        if(self.replyTweet)
+            self.tweetTextView.text = [[NSString alloc] initWithFormat:@"@%@ ", self.replyTweet[@"user"][@"screen_name"]];
+        else
+            self.tweetTextView.text = @"";
     }
 }
 

@@ -48,7 +48,7 @@
 }
 
 - (IBAction)onReplyButton:(id)sender {
-    NSLog(@"on reply");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"replyButtonNotification" object:nil userInfo:self.tweet];
 }
 
 - (IBAction)onRetweetButton:(id)sender {

@@ -68,7 +68,9 @@
 }
 
 - (void)onNavBarReplyButton {
-    
+    TweetEditorViewController *tevc = [[TweetEditorViewController alloc] initWithMode:2];
+    tevc.replyTweet = self.tweet;
+    [self.navigationController pushViewController:tevc animated:true];
 }
 
 - (IBAction)onReplyButton:(id)sender {
