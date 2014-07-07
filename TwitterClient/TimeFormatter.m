@@ -40,4 +40,18 @@
     }
 }
 
++ (NSString *)getTweetTimeString:(NSString *)tweetTime {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setLocale:usLocale];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [dateFormatter setDateFormat: @"EEE MMM dd HH:mm:ss Z yyyy"];
+    
+    NSDate *date = [dateFormatter dateFromString:tweetTime];
+    
+    [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm"];
+    return [dateFormatter stringFromDate:date];
+}
+
 @end

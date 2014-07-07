@@ -55,4 +55,9 @@
     return [self GET:@"1.1/statuses/home_timeline.json" parameters:nil success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)getTweetDetail:(NSString*)tweetID success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSString *path = [[NSString alloc] initWithFormat:@"1.1/statuses/home_timeline.json?id=%@", tweetID];
+    return [self GET:path parameters:nil success:success failure:failure];
+}
+
 @end

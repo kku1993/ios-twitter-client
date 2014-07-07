@@ -11,5 +11,6 @@
 @interface TimeFormatter : NSObject
 
 + (NSString *)getTimeIntervalString:(NSString *)startTime;
++ (NSString *)getTweetTimeString:(NSString *)startTime;
 
 @end

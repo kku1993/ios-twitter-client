@@ -163,8 +163,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // open restaurant detail view
+    // open tweet detail view
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    
+    TweetViewController *tvc = [[TweetViewController alloc] initWithTweet:[self.timelineData objectAtIndex:indexPath.row]];
+    [tvc setTitle:@"Tweet"];
+    
+    [self.navigationController pushViewController:tvc animated:true];
 }
 
 
