@@ -79,4 +79,10 @@
     return [self POST:@"1.1/favorites/destroy.json" parameters:params success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)postRetweet:(NSString *)tweetID success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSString *path = [[NSString alloc] initWithFormat:@"1.1/statuses/retweet/%@.json", tweetID];
+    return [self POST:path parameters:nil success:success failure:failure];
+
+}
+
 @end

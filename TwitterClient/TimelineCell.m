@@ -52,7 +52,14 @@
 }
 
 - (IBAction)onRetweetButton:(id)sender {
-    NSLog(@"on retweet");
+    [[TwitterAPI instance] postRetweet:self.tweet[@"id_str"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retweet" message:@"Success!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed to Retweet. Error:%@", error);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to Retweet" message:@"Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }];
 }
 
 - (IBAction)onFavoriteButton:(id)sender {
