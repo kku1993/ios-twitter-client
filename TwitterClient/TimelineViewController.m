@@ -24,14 +24,6 @@
     return self;
 }
 
-- (id)initWithData:(id)data {
-    self = [super init];
-    if(self) {
-        self.timelineData = data;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -44,11 +36,45 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadTimeline) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = self.refreshControl;
+    
+    // initialize navigation bar
+    [self initNavBar];
+    
+    // get timeline data
+    [self loadTimeline];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// title bar functions
+- (void) initNavBar {
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle: @"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(onLogoutButton)];
+    logoutButton.tintColor = [UIColor whiteColor];
+    [self.navigationItem setLeftBarButtonItem:logoutButton];
+    
+    UIBarButtonItem *tweetButton = [[UIBarButtonItem alloc] initWithTitle: @"New" style:UIBarButtonItemStyleBordered target:self action:@selector(onNewTweetButton)];
+    tweetButton.tintColor = [UIColor whiteColor];
+    [self.navigationItem setRightBarButtonItem:tweetButton];
+    
+    self.navigationItem.title = @"Home";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85/255.0 green:172/255.0 blue:238/255.0 alpha:1];
+}
+     
+- (void)onLogoutButton {
+    [[TwitterAPI instance] logout];
+    
+    LogInViewController *lvc = [[LogInViewController alloc] init];
+    [self presentViewController:lvc animated:true completion:^{
+        NSLog(@"User Logged Out");
+    }];
+}
+
+- (void)onNewTweetButton {
+    
 }
 
 // pull down to refresh functions

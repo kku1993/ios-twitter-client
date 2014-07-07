@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MMProgressHUD/MMProgressHUD.h>
 
+#import "LogInViewController.h"
 #import "TimelineCell.h"
 #import "TwitterAPI.h"
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSArray *timelineData;
-
-- (id)initWithData:(id)data;
 
 @end

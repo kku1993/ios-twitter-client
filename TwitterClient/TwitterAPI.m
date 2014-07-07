@@ -26,7 +26,6 @@
 }
 
 - (void)login {
-    [self.requestSerializer removeAccessToken];
     [self
         fetchRequestTokenWithPath:@"oauth/request_token"
         method:@"POST"
@@ -42,6 +41,14 @@
             NSLog(@"%@", err);
         }
     ];
+}
+
+- (void)logout {
+    [self.requestSerializer removeAccessToken];
+}
+
+- (BOOL)isLoggedIn {
+    return [self.requestSerializer accessToken] != nil;
 }
 
 - (AFHTTPRequestOperation *)getHomeTimelineWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {

@@ -18,8 +18,13 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    LogInViewController *vc = [[LogInViewController alloc] init];
-    self.window.rootViewController = vc;
+    // check if the user is logged in already
+    if(![[TwitterAPI instance] isLoggedIn]) {
+        LogInViewController *vc = [[LogInViewController alloc] init];
+        self.window.rootViewController = vc;
+    }
+    else
+        [self showTimeline];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -64,18 +69,19 @@
          success:^(BDBOAuthToken *accessToken){
              NSLog(@"Got access token");
              [[TwitterAPI instance].requestSerializer saveAccessToken:accessToken];
-             
-             [[TwitterAPI instance] getHomeTimelineWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                 self.window.rootViewController = [[TimelineViewController alloc] initWithData: responseObject];
-             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                 NSLog(@"%@", error);
-             }];
+             [self showTimeline];
          }
          failure:^(NSError *err){
              NSLog(@"failed to get access token");
          }];
     }
     return true;
+}
+
+- (void) showTimeline{
+    TimelineViewController *tvc = [[TimelineViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+    self.window.rootViewController = nvc;
 }
 
 @end
