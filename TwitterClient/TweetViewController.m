@@ -25,7 +25,7 @@
 - (id)initWithTweet:(NSDictionary *)tweet {
     self = [super init];
     if(self)
-        self.tweet = tweet;
+        self.tweet = [tweet mutableCopy];
     return self;
 }
 
@@ -56,6 +56,15 @@
     
     NSURL *userImgURL = [NSURL URLWithString:self.tweet[@"user"][@"profile_image_url"]];
     [self.userImageView setImageWithURL:userImgURL];
+    
+    // change the star image if the tweet is favorited
+    NSInteger favorited = [(NSNumber *)self.tweet[@"favorited"] integerValue];
+    if(favorited == 0) {
+        [self.favoriteButton setImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
+    }
+    else {
+        [self.favoriteButton setImage:[UIImage imageNamed:@"solid_star.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)onNavBarReplyButton {
@@ -63,11 +72,39 @@
 }
 
 - (IBAction)onReplyButton:(id)sender {
+    [self onNavBarReplyButton];
 }
 
 - (IBAction)onRetweetButton:(id)sender {
 }
 
 - (IBAction)onFavoriteButton:(id)sender {
+    NSInteger favorited = [(NSNumber *)self.tweet[@"favorited"] integerValue];
+    NSInteger favoriteCount = [(NSNumber *)self.tweet[@"favorite_count"] integerValue];
+    if(favorited == 0) {
+        [self.tweet setValue:@"1" forKey:@"favorited"];
+        [self.tweet setValue:[[NSString alloc] initWithFormat:@"%i", favoriteCount + 1] forKey:@"favorite_count"];
+        [self.favoriteButton setImage:[UIImage imageNamed:@"solid_star.png"] forState:UIControlStateNormal];
+        self.favoritesLabel.text = [[NSString alloc] initWithFormat:@"%i FAVORITES", favoriteCount + 1];
+        
+        [[TwitterAPI instance] postFavorite:self.tweet[@"id_str"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Failed to favorite. Error: %@", error);
+        }];
+    }
+    else {
+        [self.tweet setValue:@"0" forKey:@"favorited"];
+        [self.tweet setValue:[[NSString alloc] initWithFormat:@"%i", favoriteCount - 1] forKey:@"favorite_count"];
+        [self.favoriteButton setImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
+        
+        self.favoritesLabel.text = [[NSString alloc] initWithFormat:@"%i FAVORITES", favoriteCount - 1];
+        
+        [[TwitterAPI instance] postRemoveFavorite:self.tweet[@"id_str"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Failed to remove favorite. Error:%@", error);
+        }];
+    }
 }
 @end

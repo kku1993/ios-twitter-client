@@ -10,6 +10,7 @@
 #import <UIImageView+AFNetworking.h>
 
 #import "TimeFormatter.h"
+#import "TwitterAPI.h"
 
 @interface TweetViewController : UIViewController
 
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *retweetsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favoritesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 - (IBAction)onReplyButton:(id)sender;
 - (IBAction)onRetweetButton:(id)sender;
 - (IBAction)onFavoriteButton:(id)sender;

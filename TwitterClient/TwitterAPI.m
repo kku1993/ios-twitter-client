@@ -69,4 +69,14 @@
     return [self POST:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)postFavorite:(NSString *)tweetID success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSDictionary *params = @{@"id": tweetID};
+    return [self POST:@"1.1/favorites/create.json" parameters:params success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)postRemoveFavorite:(NSString *)tweetID success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSDictionary *params = @{@"id": tweetID};
+    return [self POST:@"1.1/favorites/destroy.json" parameters:params success:success failure:failure];
+}
+
 @end

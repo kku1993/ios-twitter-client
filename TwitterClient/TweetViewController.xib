@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetViewController">
             <connections>
+                <outlet property="favoriteButton" destination="rnz-qF-fk4" id="Hr8-EJ-v9B"/>
                 <outlet property="favoritesLabel" destination="hVN-mt-cPW" id="O3q-PA-aHn"/>
                 <outlet property="retweetsLabel" destination="4qU-T8-JNC" id="ccd-Kq-82Z"/>
                 <outlet property="timeLabel" destination="zwl-Ia-HcY" id="msZ-lj-7Is"/>
