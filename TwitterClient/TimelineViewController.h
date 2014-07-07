@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MMProgressHUD/MMProgressHUD.h>
 
 #import "TimelineCell.h"
+#import "TwitterAPI.h"
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
