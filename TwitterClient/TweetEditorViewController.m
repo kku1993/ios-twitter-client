@@ -64,7 +64,7 @@
     [self.userImageView setImageWithURL:userImgURL];
 
     self.userNameLabel.text = self.userInfo[@"name"];
-    self.userScreenNameLabel.text = self.userInfo[@"screen_name"];
+    self.userScreenNameLabel.text = [[NSString alloc] initWithFormat:@"@%@", self.userInfo[@"screen_name"]];
     
     if(self.mode == 1) {
         // new tweet

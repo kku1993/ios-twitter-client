@@ -19,7 +19,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.menuViewController = [[MenuViewController alloc] init];
     }
     return self;
 }
@@ -54,9 +54,15 @@
 
 // title bar functions
 - (void) initNavBar {
+    /*
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle: @"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(onLogoutButton)];
     logoutButton.tintColor = [UIColor whiteColor];
     [self.navigationItem setLeftBarButtonItem:logoutButton];
+     */
+    
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle: @"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(onMenuButton)];
+    menuButton.tintColor = [UIColor whiteColor];
+    [self.navigationItem setLeftBarButtonItem:menuButton];
     
     UIBarButtonItem *tweetButton = [[UIBarButtonItem alloc] initWithTitle: @"New" style:UIBarButtonItemStyleBordered target:self action:@selector(onNewTweetButton)];
     tweetButton.tintColor = [UIColor whiteColor];
@@ -66,7 +72,31 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor] }];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85/255.0 green:172/255.0 blue:238/255.0 alpha:1];
 }
-     
+
+- (void)onMenuButton {
+    if(self.menuViewController.isShowing) {
+        [self hideMenu];
+        return;
+    }
+    
+    [self showMenu];
+}
+
+- (void)showMenu {
+    self.menuViewController.view.frame = CGRectMake(0, 0, 250, self.timelineTableView.frame.size.height);
+    [self addChildViewController:self.menuViewController];
+    [self.menuViewController willMoveToParentViewController:self];
+    [self.view addSubview:self.menuViewController.view];
+    [self.menuViewController didMoveToParentViewController:self];
+    self.menuViewController.isShowing = true;
+}
+
+- (void)hideMenu {
+    [self.menuViewController willMoveToParentViewController:nil];
+    [self.menuViewController.view removeFromSuperview];
+    self.menuViewController.isShowing = false;
+}
+
 - (void)onLogoutButton {
     [[TwitterAPI instance] logout];
     

@@ -14,9 +14,12 @@
 #import "TwitterAPI.h"
 #import "TweetViewController.h"
 #import "TweetEditorViewController.h"
+#import "MenuViewController.h"
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSArray *timelineData;
+
+@property (nonatomic) MenuViewController *menuViewController;
 
 @end
