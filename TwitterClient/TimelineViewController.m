@@ -51,6 +51,9 @@
     // register handler for menu option items
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMenuOptionSelected:) name:@"menuOptionSelectedNotification" object:nil];
     
+    // register handler for user image click event
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserImageClicked:) name:@"timelineUserImageClicked" object:nil];
+    
     // init swipe to show menu
     self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
     self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
@@ -290,9 +293,6 @@
     [self showSubViewController:self.userProfileViewController];
 }
 
-- (void)showTimeline {
-}
-
 - (void)onMenuOptionSelected:(NSNotification *)notification {
     NSIndexPath *indexPath = [notification.userInfo objectForKey:@"IndexPath"];
     
@@ -330,5 +330,12 @@
     else if(swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         [self hideMenu];
     }
+}
+
+- (void) onUserImageClicked:(NSNotification *)notification {
+    NSDictionary *tweet = notification.userInfo;
+    if(!tweet)
+        return;
+    [self showUserProfile:tweet[@"user"][@"screen_name"]];
 }
 @end

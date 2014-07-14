@@ -13,13 +13,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h5C-0Q-gqd">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h5C-0Q-gqd">
                         <rect key="frame" x="12" y="37" width="60" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="72k-4e-HjC"/>
                             <constraint firstAttribute="width" constant="60" id="7LF-8v-LzC"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AQm-05-gmB" appends="YES" id="zci-SI-LaF"/>
+                        </connections>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bob Tweet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HV-3A-Hzl">
                         <rect key="frame" x="80" y="41" width="150" height="19"/>
@@ -129,6 +133,11 @@
                 <outlet property="userScreenNameLabel" destination="GA5-Fh-iej" id="er2-uN-cPU"/>
             </connections>
         </tableViewCell>
+        <tapGestureRecognizer id="AQm-05-gmB">
+            <connections>
+                <action selector="onUserImageViewTap:" destination="RMr-Gh-1gl" id="K1U-Mu-Kys"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="retweet.png" width="50" height="50"/>

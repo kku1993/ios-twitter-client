@@ -84,5 +84,9 @@
     }
 }
 
+- (IBAction)onUserImageViewTap:(UITapGestureRecognizer *)tapGestureRecognizer {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"timelineUserImageClicked" object:nil userInfo:self.tweet];
+}
+
 
 @end

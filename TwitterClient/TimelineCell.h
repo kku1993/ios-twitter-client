@@ -25,7 +25,7 @@
 - (IBAction)onReplyButton:(id)sender;
 - (IBAction)onRetweetButton:(id)sender;
 - (IBAction)onFavoriteButton:(id)sender;
-
+- (IBAction)onUserImageViewTap:(id)sender;
 
 - (TimelineCell *)updateViews;
 

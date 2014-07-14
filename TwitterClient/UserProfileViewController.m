@@ -34,7 +34,10 @@
     
     self.userTweetsTableView.delegate = self;
     self.userTweetsTableView.dataSource = self;
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self getUserInfo];
     [self getUserTweets];
 }
@@ -82,9 +85,13 @@
     }
     else {
         [[TwitterAPI instance] getUserDataWithScreenName:self.userScreenName success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            self.userData = responseObject;
+            self.userData = [responseObject objectAtIndex:0];
             
             [self initViews];
+            
+            if(!self.userTweets) {
+                [self getUserTweets];
+            }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Failed to get user information. Error: %@", error);
         }];
