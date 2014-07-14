@@ -36,7 +36,9 @@ Part 2:
 - Modify ``TwitterClient/config.template.plist`` by inserting your own Twitter API key and renaming the file to ``config.plist``.
 
 # Walkthrough
-![Video Walkthrough](https://raw.githubusercontent.com/kku1993/ios-twitter-client/walkthroughs/walkthrough.gif)
+![Video Walkthrough (Part 1)](https://raw.githubusercontent.com/kku1993/ios-twitter-client/walkthroughs/walkthrough.gif)
+
+![Video Walkthrough (Part 2)](https://raw.githubusercontent.com/kku1993/ios-twitter-client/walkthroughs/walkthrough_pt2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
