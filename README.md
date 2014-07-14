@@ -3,7 +3,7 @@ ios-twitter-client
 
 A simple iOS client for Twitter.
 
-Total Time Spent: 10 hours
+Total Time Spent: 18 hours
 
 Completed User Stories:
 
