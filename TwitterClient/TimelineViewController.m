@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.menuViewController = [[MenuViewController alloc] init];
+        self.isMovingMenu = false;
     }
     return self;
 }
@@ -45,6 +46,14 @@
     
     // register handler for reply button from tabelviewcell
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReplyButton:) name:@"replyButtonNotification" object:nil];
+    
+    // init swipe to show menu
+    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
+    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
+    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
+    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,27 +92,51 @@
 }
 
 - (void)showMenu {
-    self.menuViewController.view.frame = CGRectMake(0, 0, 250, self.timelineTableView.frame.size.height);
-    [self addChildViewController:self.menuViewController];
-    [self.menuViewController willMoveToParentViewController:self];
-    [self.view addSubview:self.menuViewController.view];
-    [self.menuViewController didMoveToParentViewController:self];
-    self.menuViewController.isShowing = true;
+    if(!self.isMovingMenu) {
+        self.isMovingMenu = true;
+        
+        [self addChildViewController:self.menuViewController];
+        [self.menuViewController willMoveToParentViewController:self];
+        [self.view addSubview:self.menuViewController.view];
+        
+        float xOffset = 250;
+        self.menuViewController.view.frame = CGRectMake(0, 0, xOffset, self.timelineTableView.frame.size.height);
+        
+        // animation
+        CGPoint originalCenter = self.timelineTableView.center;
+        self.menuViewController.view.center = CGPointMake(-xOffset/2, originalCenter.y);
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationCurveEaseInOut animations:^{
+            self.menuViewController.view.center = CGPointMake(xOffset/2, originalCenter.y);
+            self.timelineTableView.center = CGPointMake(originalCenter.x + xOffset, originalCenter.y);
+        } completion:^(BOOL finished) {
+            self.timelineTableView.frame = CGRectMake(xOffset, 0, self.timelineTableView.frame.size.width, self.timelineTableView.frame.size.height);
+            [self.menuViewController didMoveToParentViewController:self];
+            self.menuViewController.isShowing = true;
+            self.isMovingMenu = false;
+        }];
+    }
 }
 
 - (void)hideMenu {
-    [self.menuViewController willMoveToParentViewController:nil];
-    [self.menuViewController.view removeFromSuperview];
-    self.menuViewController.isShowing = false;
-}
-
-- (void)onLogoutButton {
-    [[TwitterAPI instance] logout];
-    
-    LogInViewController *lvc = [[LogInViewController alloc] init];
-    [self presentViewController:lvc animated:true completion:^{
-        NSLog(@"User Logged Out");
-    }];
+    if(!self.isMovingMenu) {
+        self.isMovingMenu = true;
+        
+        [self.menuViewController willMoveToParentViewController:nil];
+        float xOffset = 250;
+        
+        // animation
+        CGPoint originalCenter = self.timelineTableView.center;
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationCurveEaseInOut animations:^{
+            self.menuViewController.view.center = CGPointMake(-xOffset/2, originalCenter.y);
+            self.timelineTableView.center = CGPointMake(originalCenter.x - xOffset, originalCenter.y);
+        } completion:^(BOOL finished) {
+            [self.menuViewController.view removeFromSuperview];
+            self.timelineTableView.frame = CGRectMake(0, 0, self.timelineTableView.frame.size.width, self.timelineTableView.frame.size.height);
+            [self.menuViewController didMoveToParentViewController:nil];
+            self.menuViewController.isShowing = false;
+            self.isMovingMenu = false;
+        }];
+    }
 }
 
 - (void)onNewTweetButton {
@@ -215,4 +248,12 @@
 }
 
 
+- (void)onSwipeGesture:(UISwipeGestureRecognizer *)swipeGestureRecognizer {
+    if(swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        [self showMenu];
+    }
+    else if(swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        [self hideMenu];
+    }
+}
 @end

@@ -21,5 +21,9 @@
 @property (nonatomic) NSArray *timelineData;
 
 @property (nonatomic) MenuViewController *menuViewController;
+@property (nonatomic) BOOL isMovingMenu;
+
+@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
+@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
 
 @end

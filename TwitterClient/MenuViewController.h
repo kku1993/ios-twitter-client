@@ -10,6 +10,7 @@
 #import <UIImageView+AFNetworking.h>
 
 #import "TwitterAPI.h"
+#import "LogInViewController.h"
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
