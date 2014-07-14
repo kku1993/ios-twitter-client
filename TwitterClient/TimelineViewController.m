@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.menuViewController = [[MenuViewController alloc] init];
+        self.userProfileViewController = [[UserProfileViewController alloc] init];
         self.isMovingMenu = false;
     }
     return self;
@@ -47,13 +48,16 @@
     // register handler for reply button from tabelviewcell
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReplyButton:) name:@"replyButtonNotification" object:nil];
     
+    // register handler for menu option items
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMenuOptionSelected:) name:@"menuOptionSelectedNotification" object:nil];
+    
     // init swipe to show menu
     self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
     self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
     self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
-    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
+    [self.containerView addGestureRecognizer:self.leftSwipeGestureRecognizer];
+    [self.containerView addGestureRecognizer:self.rightSwipeGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,7 +96,7 @@
 }
 
 - (void)showMenu {
-    if(!self.isMovingMenu) {
+    if(!self.isMovingMenu && !self.menuViewController.isShowing) {
         self.isMovingMenu = true;
         
         [self addChildViewController:self.menuViewController];
@@ -100,16 +104,16 @@
         [self.view addSubview:self.menuViewController.view];
         
         float xOffset = 250;
-        self.menuViewController.view.frame = CGRectMake(0, 0, xOffset, self.timelineTableView.frame.size.height);
+        self.menuViewController.view.frame = CGRectMake(0, 0, xOffset, self.containerView.frame.size.height);
         
         // animation
-        CGPoint originalCenter = self.timelineTableView.center;
+        CGPoint originalCenter = self.containerView.center;
         self.menuViewController.view.center = CGPointMake(-xOffset/2, originalCenter.y);
         [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationCurveEaseInOut animations:^{
             self.menuViewController.view.center = CGPointMake(xOffset/2, originalCenter.y);
-            self.timelineTableView.center = CGPointMake(originalCenter.x + xOffset, originalCenter.y);
+            self.containerView.center = CGPointMake(originalCenter.x + xOffset, originalCenter.y);
         } completion:^(BOOL finished) {
-            self.timelineTableView.frame = CGRectMake(xOffset, 0, self.timelineTableView.frame.size.width, self.timelineTableView.frame.size.height);
+            self.containerView.frame = CGRectMake(xOffset, 0, self.containerView.frame.size.width, self.containerView.frame.size.height);
             [self.menuViewController didMoveToParentViewController:self];
             self.menuViewController.isShowing = true;
             self.isMovingMenu = false;
@@ -118,20 +122,20 @@
 }
 
 - (void)hideMenu {
-    if(!self.isMovingMenu) {
+    if(!self.isMovingMenu && self.menuViewController.isShowing) {
         self.isMovingMenu = true;
         
         [self.menuViewController willMoveToParentViewController:nil];
         float xOffset = 250;
         
         // animation
-        CGPoint originalCenter = self.timelineTableView.center;
+        CGPoint originalCenter = self.containerView.center;
         [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationCurveEaseInOut animations:^{
             self.menuViewController.view.center = CGPointMake(-xOffset/2, originalCenter.y);
-            self.timelineTableView.center = CGPointMake(originalCenter.x - xOffset, originalCenter.y);
+            self.containerView.center = CGPointMake(originalCenter.x - xOffset, originalCenter.y);
         } completion:^(BOOL finished) {
             [self.menuViewController.view removeFromSuperview];
-            self.timelineTableView.frame = CGRectMake(0, 0, self.timelineTableView.frame.size.width, self.timelineTableView.frame.size.height);
+            self.containerView.frame = CGRectMake(0, 0, self.containerView.frame.size.width, self.containerView.frame.size.height);
             [self.menuViewController didMoveToParentViewController:nil];
             self.menuViewController.isShowing = false;
             self.isMovingMenu = false;
@@ -142,6 +146,15 @@
 - (void)onNewTweetButton {
     TweetEditorViewController *tevc = [[TweetEditorViewController alloc] initWithMode:1];
     [self.navigationController pushViewController:tevc animated:true];
+}
+
+- (void)logout {
+    [[TwitterAPI instance] logout];
+    
+    LogInViewController *lvc = [[LogInViewController alloc] init];
+    [self presentViewController:lvc animated:true completion:^{
+        NSLog(@"User Logged Out");
+    }];
 }
 
 // pull down to refresh functions
@@ -239,6 +252,8 @@
     [self.navigationController pushViewController:tvc animated:true];
 }
 
+// user controls
+
 - (void)onReplyButton:(NSNotification *)notification {
     NSDictionary *tweet = notification.userInfo;
     
@@ -247,6 +262,66 @@
     [self.navigationController pushViewController:tevc animated:true];
 }
 
+// controls for a child view controller
+- (void)showSubViewController:(UIViewController *)vc {
+    if(self.frontViewController) {
+        // remove front controller before adding new one
+        [self hideSubViewController:self.frontViewController];
+        self.frontViewController = nil;
+    }
+    
+    vc.view.frame = self.containerView.frame;
+    
+    [self addChildViewController:vc];
+    [vc willMoveToParentViewController:self];
+    [self.view addSubview:vc.view];
+    
+    self.frontViewController = vc;
+    [vc didMoveToParentViewController:self];
+}
+
+- (void)hideSubViewController:(UIViewController *)vc {
+    [vc.view removeFromSuperview];
+    [vc didMoveToParentViewController:nil];
+}
+
+- (void)showUserProfile:(NSString *)screenName {
+    self.userProfileViewController.userScreenName = screenName;
+    [self showSubViewController:self.userProfileViewController];
+}
+
+- (void)showTimeline {
+}
+
+- (void)onMenuOptionSelected:(NSNotification *)notification {
+    NSIndexPath *indexPath = [notification.userInfo objectForKey:@"IndexPath"];
+    
+    [self hideMenu];
+    switch(indexPath.row) {
+        case 0:
+            // profile
+            [self showUserProfile:nil];
+            break;
+        case 1:
+            // timeline
+            if(self.frontViewController) {
+                // remove front controller
+                [self hideSubViewController:self.frontViewController];
+                self.frontViewController = nil;
+            }
+            break;
+        case 2:
+            // mentions
+            break;
+        case 3:
+            // logout
+            [self logout];
+            break;
+        default:
+            NSLog(@"Invalid Menu Option Selected");
+            break;
+    }
+}
 
 - (void)onSwipeGesture:(UISwipeGestureRecognizer *)swipeGestureRecognizer {
     if(swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {

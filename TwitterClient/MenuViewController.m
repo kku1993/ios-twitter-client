@@ -94,28 +94,8 @@
     // open tweet detail view
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
-    switch (indexPath.row) {
-        case 0:
-            // profile
-            break;
-        case 3:
-            // logout
-            [self logout];
-            break;
-        default:
-            NSLog(@"Invalid Selection");
-            break;
-    }
-}
-
-// options handlers
-- (void)logout {
-    [[TwitterAPI instance] logout];
-    
-    LogInViewController *lvc = [[LogInViewController alloc] init];
-    [self presentViewController:lvc animated:true completion:^{
-        NSLog(@"User Logged Out");
-    }];
+    NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:indexPath, @"IndexPath", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"menuOptionSelectedNotification" object:self userInfo:userInfo];
 }
 
 @end

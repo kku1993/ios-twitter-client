@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimelineViewController">
             <connections>
+                <outlet property="containerView" destination="bJu-of-zWd" id="DLn-1f-gJC"/>
                 <outlet property="timelineTableView" destination="16C-wm-bvw" id="OhN-Qc-JtD"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -15,19 +16,32 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="16C-wm-bvw">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJu-of-zWd">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="16C-wm-bvw">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="16C-wm-bvw" firstAttribute="top" secondItem="bJu-of-zWd" secondAttribute="top" id="Mnw-PU-S53"/>
+                        <constraint firstAttribute="bottom" secondItem="16C-wm-bvw" secondAttribute="bottom" id="ed6-xa-mRh"/>
+                        <constraint firstItem="16C-wm-bvw" firstAttribute="leading" secondItem="bJu-of-zWd" secondAttribute="leading" id="j4F-r2-6vn"/>
+                        <constraint firstAttribute="trailing" secondItem="16C-wm-bvw" secondAttribute="trailing" id="pRj-cF-zK8"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="16C-wm-bvw" secondAttribute="trailing" id="TVM-jO-5DD"/>
-                <constraint firstItem="16C-wm-bvw" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="WU9-TX-fRd"/>
-                <constraint firstItem="16C-wm-bvw" firstAttribute="top" secondItem="1" secondAttribute="top" id="apq-7c-vnZ"/>
-                <constraint firstAttribute="bottom" secondItem="16C-wm-bvw" secondAttribute="bottom" id="bT8-OA-KJt"/>
+                <constraint firstAttribute="bottom" secondItem="bJu-of-zWd" secondAttribute="bottom" id="ANd-3U-B70"/>
+                <constraint firstAttribute="trailing" secondItem="bJu-of-zWd" secondAttribute="trailing" id="JX5-eP-GZx"/>
+                <constraint firstItem="bJu-of-zWd" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="OGV-RQ-j0G"/>
+                <constraint firstItem="bJu-of-zWd" firstAttribute="top" secondItem="1" secondAttribute="top" id="gp9-tp-XCb"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

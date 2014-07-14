@@ -14,15 +14,23 @@
 #import "TwitterAPI.h"
 #import "TweetViewController.h"
 #import "TweetEditorViewController.h"
+
 #import "MenuViewController.h"
+#import "UserProfileViewController.h"
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSArray *timelineData;
 
+// the current view controller at the front
+@property (nonatomic) UIViewController *frontViewController;
+
 @property (nonatomic) MenuViewController *menuViewController;
 @property (nonatomic) BOOL isMovingMenu;
 
+@property (nonatomic) UserProfileViewController *userProfileViewController;
+
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
 @property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
 

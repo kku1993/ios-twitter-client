@@ -27,6 +27,8 @@
 		1B29DA4A196A826400C62093 /* solid_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B29DA49196A826400C62093 /* solid_star.png */; };
 		1B65EF5D197374D900C7660A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B65EF5B197374D900C7660A /* MenuViewController.m */; };
 		1B65EF5E197374D900C7660A /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B65EF5C197374D900C7660A /* MenuViewController.xib */; };
+		1B65EF631973A2D800C7660A /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B65EF611973A2D800C7660A /* UserProfileViewController.m */; };
+		1B65EF641973A2D800C7660A /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B65EF621973A2D800C7660A /* UserProfileViewController.xib */; };
 		1BDD1C79196A0CCB00B5FAE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDD1C78196A0CCB00B5FAE4 /* Foundation.framework */; };
 		1BDD1C7B196A0CCB00B5FAE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDD1C7A196A0CCB00B5FAE4 /* CoreGraphics.framework */; };
 		1BDD1C7D196A0CCB00B5FAE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDD1C7C196A0CCB00B5FAE4 /* UIKit.framework */; };
@@ -84,6 +86,9 @@
 		1B65EF5A197374D900C7660A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		1B65EF5B197374D900C7660A /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		1B65EF5C197374D900C7660A /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		1B65EF601973A2D800C7660A /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		1B65EF611973A2D800C7660A /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		1B65EF621973A2D800C7660A /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		1BDD1C75196A0CCB00B5FAE4 /* TwitterClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BDD1C78196A0CCB00B5FAE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1BDD1C7A196A0CCB00B5FAE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -191,6 +196,16 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
+		1B65EF5F1973A2C800C7660A /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1B65EF601973A2D800C7660A /* UserProfileViewController.h */,
+				1B65EF611973A2D800C7660A /* UserProfileViewController.m */,
+				1B65EF621973A2D800C7660A /* UserProfileViewController.xib */,
+			);
+			name = UserProfile;
+			sourceTree = "<group>";
+		};
 		1BDD1C6C196A0CCB00B5FAE4 = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +241,7 @@
 		1BDD1C7E196A0CCB00B5FAE4 /* TwitterClient */ = {
 			isa = PBXGroup;
 			children = (
+				1B65EF5F1973A2C800C7660A /* UserProfile */,
 				1B65EF59197374BC00C7660A /* Menu */,
 				1B29DA40196A6F6B00C62093 /* TweetEditor */,
 				1B29DA3A196A5A2500C62093 /* TweetDetail */,
@@ -374,6 +390,7 @@
 				1B29DA4A196A826400C62093 /* solid_star.png in Resources */,
 				1B29DA3F196A5A4200C62093 /* TweetViewController.xib in Resources */,
 				1B29DA29196A251600C62093 /* config.plist in Resources */,
+				1B65EF641973A2D800C7660A /* UserProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +451,7 @@
 				1B29DA39196A3B5B00C62093 /* TimeFormatter.m in Sources */,
 				1B29DA14196A0EFD00C62093 /* TwitterAPI.m in Sources */,
 				1BDD1C85196A0CCB00B5FAE4 /* main.m in Sources */,
+				1B65EF631973A2D800C7660A /* UserProfileViewController.m in Sources */,
 				1B65EF5D197374D900C7660A /* MenuViewController.m in Sources */,
 				1B29DA44196A6F8C00C62093 /* TweetEditorViewController.m in Sources */,
 			);

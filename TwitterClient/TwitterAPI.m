@@ -60,6 +60,7 @@
     return [self GET:path parameters:nil success:success failure:failure];
 }
 
+// get detail of the user currently logged in
 - (AFHTTPRequestOperation *)getUserDetailWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     return [self GET:@"1.1/account/verify_credentials.json" parameters:nil success:success failure:failure];
 }
@@ -82,7 +83,16 @@
 - (AFHTTPRequestOperation *)postRetweet:(NSString *)tweetID success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     NSString *path = [[NSString alloc] initWithFormat:@"1.1/statuses/retweet/%@.json", tweetID];
     return [self POST:path parameters:nil success:success failure:failure];
+}
 
+- (AFHTTPRequestOperation *)getUserDataWithScreenName:(NSString*)screenName success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSString *path = [[NSString alloc] initWithFormat:@"1.1/users/lookup.json?screen_name=%@", screenName];
+    return [self GET:path parameters:nil success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)getTimelineWithScreenName:(NSString*)screenName success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSString *path = [[NSString alloc] initWithFormat:@"1.1/statuses/home_timeline.json?screen_name=%@", screenName];
+    return [self GET:path parameters:nil success:success failure:failure];
 }
 
 @end
