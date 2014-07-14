@@ -95,4 +95,8 @@
     return [self GET:path parameters:nil success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)getMentionsTimelineWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    return [self GET:@"1.1/statuses/mentions_timeline.json" parameters:nil success:success failure:failure];
+}
+
 @end

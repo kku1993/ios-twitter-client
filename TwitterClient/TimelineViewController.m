@@ -21,6 +21,7 @@
     if (self) {
         self.menuViewController = [[MenuViewController alloc] init];
         self.userProfileViewController = [[UserProfileViewController alloc] init];
+        self.mentionsViewController = [[MentionsViewController alloc] init];
         self.isMovingMenu = false;
     }
     return self;
@@ -293,6 +294,10 @@
     [self showSubViewController:self.userProfileViewController];
 }
 
+- (void)showMentions {
+    [self showSubViewController:self.mentionsViewController];
+}
+
 - (void)onMenuOptionSelected:(NSNotification *)notification {
     NSIndexPath *indexPath = [notification.userInfo objectForKey:@"IndexPath"];
     
@@ -312,6 +317,7 @@
             break;
         case 2:
             // mentions
+            [self showMentions];
             break;
         case 3:
             // logout

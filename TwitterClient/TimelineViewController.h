@@ -17,6 +17,7 @@
 
 #import "MenuViewController.h"
 #import "UserProfileViewController.h"
+#import "MentionsViewController.h"
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -29,6 +30,7 @@
 @property (nonatomic) BOOL isMovingMenu;
 
 @property (nonatomic) UserProfileViewController *userProfileViewController;
+@property (nonatomic) MentionsViewController *mentionsViewController;
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;

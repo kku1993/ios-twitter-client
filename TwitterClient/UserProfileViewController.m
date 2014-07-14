@@ -133,7 +133,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"TimelineCell";
+    static NSString *CellIdentifier = @"ProfileTweetCell";
     
     TimelineCell *cell = [self.userTweetsTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

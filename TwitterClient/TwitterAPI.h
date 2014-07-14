@@ -24,5 +24,6 @@
 - (AFHTTPRequestOperation *)postRetweet:(NSString *)tweetID success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 - (AFHTTPRequestOperation *)getUserDataWithScreenName:(NSString*)screenName success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 - (AFHTTPRequestOperation *)getTimelineWithScreenName:(NSString*)screenName success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+- (AFHTTPRequestOperation *)getMentionsTimelineWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end
