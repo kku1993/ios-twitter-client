@@ -25,12 +25,12 @@
 		1B29DA44196A6F8C00C62093 /* TweetEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B29DA42196A6F8C00C62093 /* TweetEditorViewController.m */; };
 		1B29DA45196A6F8C00C62093 /* TweetEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B29DA43196A6F8C00C62093 /* TweetEditorViewController.xib */; };
 		1B29DA4A196A826400C62093 /* solid_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B29DA49196A826400C62093 /* solid_star.png */; };
+		1B395B6C197CE93500A2A656 /* MentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B395B6A197CE93500A2A656 /* MentionsViewController.m */; };
+		1B395B6D197CE93500A2A656 /* MentionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B395B6B197CE93500A2A656 /* MentionsViewController.xib */; };
 		1B65EF5D197374D900C7660A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B65EF5B197374D900C7660A /* MenuViewController.m */; };
 		1B65EF5E197374D900C7660A /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B65EF5C197374D900C7660A /* MenuViewController.xib */; };
 		1B65EF631973A2D800C7660A /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B65EF611973A2D800C7660A /* UserProfileViewController.m */; };
 		1B65EF641973A2D800C7660A /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B65EF621973A2D800C7660A /* UserProfileViewController.xib */; };
-		1B65EF681973C1CB00C7660A /* MentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B65EF661973C1CB00C7660A /* MentionsViewController.m */; };
-		1B65EF691973C1CB00C7660A /* MentionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B65EF671973C1CB00C7660A /* MentionsViewController.xib */; };
 		1BDD1C79196A0CCB00B5FAE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDD1C78196A0CCB00B5FAE4 /* Foundation.framework */; };
 		1BDD1C7B196A0CCB00B5FAE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDD1C7A196A0CCB00B5FAE4 /* CoreGraphics.framework */; };
 		1BDD1C7D196A0CCB00B5FAE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDD1C7C196A0CCB00B5FAE4 /* UIKit.framework */; };
@@ -85,15 +85,15 @@
 		1B29DA42196A6F8C00C62093 /* TweetEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetEditorViewController.m; sourceTree = "<group>"; };
 		1B29DA43196A6F8C00C62093 /* TweetEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetEditorViewController.xib; sourceTree = "<group>"; };
 		1B29DA49196A826400C62093 /* solid_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solid_star.png; sourceTree = "<group>"; };
+		1B395B69197CE93500A2A656 /* MentionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MentionsViewController.h; path = TwitterClient/MentionsViewController.h; sourceTree = "<group>"; };
+		1B395B6A197CE93500A2A656 /* MentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MentionsViewController.m; path = TwitterClient/MentionsViewController.m; sourceTree = "<group>"; };
+		1B395B6B197CE93500A2A656 /* MentionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MentionsViewController.xib; path = TwitterClient/MentionsViewController.xib; sourceTree = "<group>"; };
 		1B65EF5A197374D900C7660A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		1B65EF5B197374D900C7660A /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		1B65EF5C197374D900C7660A /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		1B65EF601973A2D800C7660A /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		1B65EF611973A2D800C7660A /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		1B65EF621973A2D800C7660A /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
-		1B65EF651973C1CB00C7660A /* MentionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsViewController.h; sourceTree = "<group>"; };
-		1B65EF661973C1CB00C7660A /* MentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsViewController.m; sourceTree = "<group>"; };
-		1B65EF671973C1CB00C7660A /* MentionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MentionsViewController.xib; sourceTree = "<group>"; };
 		1BDD1C75196A0CCB00B5FAE4 /* TwitterClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BDD1C78196A0CCB00B5FAE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1BDD1C7A196A0CCB00B5FAE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -214,9 +214,9 @@
 		1B65EF6A1973C1D300C7660A /* Mentions */ = {
 			isa = PBXGroup;
 			children = (
-				1B65EF651973C1CB00C7660A /* MentionsViewController.h */,
-				1B65EF661973C1CB00C7660A /* MentionsViewController.m */,
-				1B65EF671973C1CB00C7660A /* MentionsViewController.xib */,
+				1B395B69197CE93500A2A656 /* MentionsViewController.h */,
+				1B395B6A197CE93500A2A656 /* MentionsViewController.m */,
+				1B395B6B197CE93500A2A656 /* MentionsViewController.xib */,
 			);
 			name = Mentions;
 			path = ..;
@@ -395,12 +395,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B29DA45196A6F8C00C62093 /* TweetEditorViewController.xib in Resources */,
-				1B65EF691973C1CB00C7660A /* MentionsViewController.xib in Resources */,
 				1B29DA21196A113600C62093 /* LogInViewController.xib in Resources */,
 				1B65EF5E197374D900C7660A /* MenuViewController.xib in Resources */,
 				1B29DA36196A36FC00C62093 /* retweet.png in Resources */,
 				1B29DA32196A312D00C62093 /* tweet.png in Resources */,
 				1B29DA1A196A10AB00C62093 /* TimelineViewController.xib in Resources */,
+				1B395B6D197CE93500A2A656 /* MentionsViewController.xib in Resources */,
 				1B29DA2E196A29D100C62093 /* TimelineCell.xib in Resources */,
 				1BDD1C83196A0CCB00B5FAE4 /* InfoPlist.strings in Resources */,
 				1B29DA34196A36D100C62093 /* star.png in Resources */,
@@ -462,7 +462,7 @@
 			files = (
 				1B29DA27196A195100C62093 /* NSURL+DictionaryFromQueryString.m in Sources */,
 				1BDD1C89196A0CCB00B5FAE4 /* AppDelegate.m in Sources */,
-				1B65EF681973C1CB00C7660A /* MentionsViewController.m in Sources */,
+				1B395B6C197CE93500A2A656 /* MentionsViewController.m in Sources */,
 				1B29DA19196A10AB00C62093 /* TimelineViewController.m in Sources */,
 				1B29DA3E196A5A4200C62093 /* TweetViewController.m in Sources */,
 				1B29DA20196A113600C62093 /* LogInViewController.m in Sources */,
